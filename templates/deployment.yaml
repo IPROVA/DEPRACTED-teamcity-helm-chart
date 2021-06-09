@@ -34,6 +34,10 @@ spec:
       labels:
         app: {{ template "teamcity.name" . }}
         release: {{ .Release.Name }}
+      {{- if .Values.podAnnotations }}
+      annotations:
+{{ toYaml .Values.podAnnotations | indent 8 }}
+      {{- end }}
     spec:
       initContainers:
         - name: init-volume-owner
