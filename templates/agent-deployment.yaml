@@ -50,6 +50,10 @@ spec:
       labels:
         app: {{ template "teamcity.name" . }}-agent
         release: {{ .Release.Name }}
+      {{- if .Values.agent.podAnnotations }}
+      annotations:
+{{ toYaml .Values.agent.podAnnotations | indent 8 }}
+      {{- end }}
     spec:
       securityContext:
         runAsUser: 0

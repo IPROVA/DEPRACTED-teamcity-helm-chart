@@ -51,6 +51,10 @@ spec:
       labels:
         app: {{ template "teamcity.name" . }}-highmemagent
         release: {{ .Release.Name }}
+      {{- if .Values.highmemagent.podAnnotations }}
+      annotations:
+{{ toYaml .Values.highmemagent.podAnnotations | indent 8 }}
+      {{- end }}
     spec:
       securityContext:
         runAsUser: 0    
