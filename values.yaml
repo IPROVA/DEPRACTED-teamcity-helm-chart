@@ -67,6 +67,14 @@ highmemagent:
 
 replicaCount: 1
 
+podSecurityContext:
+  fsGroup: 1000
+
+securityContext:
+  runAsUser: 1000
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+
 image:
   repository: jetbrains/teamcity-server
   tag: latest

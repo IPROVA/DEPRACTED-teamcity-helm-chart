@@ -39,17 +39,18 @@ spec:
 {{ toYaml .Values.podAnnotations | indent 8 }}
       {{- end }}
     spec:
-      initContainers:
-        - name: init-volume-owner
-          image: busybox
-          command: ["sh", "-c", "chown -R 1000:1000 /data/teamcity_server/datadir"]
-          volumeMounts:
-              - name:  server-data
-                mountPath: /data/teamcity_server/datadir
+{{- if .Values.podSecurityContext }}
+      securityContext:
+{{ toYaml .Values.podSecurityContext | indent 8 }}
+{{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+{{- if .Values.securityContext }}
+          securityContext:
+{{ toYaml .Values.securityContext | indent 12 }}
+{{- end }}
           volumeMounts:
             - name:  server-data
               mountPath: /data/teamcity_server/datadir
