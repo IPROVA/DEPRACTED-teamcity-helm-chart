@@ -2,6 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 agent:
+  enabled: true
   replicaCount: 1
   image:
     repository: jetbrains/teamcity-agent
@@ -36,6 +37,7 @@ agent:
   dindStorageClass: null
 
 highmemagent:
+  enabled: true
   replicaCount: 0
   image:
     repository: jetbrains/teamcity-agent
@@ -79,6 +81,8 @@ image:
   repository: jetbrains/teamcity-server
   tag: latest
   pullPolicy: Always
+
+deployServer: true
 
 ## Specify an array of imagePullSecrets.
 ## Secrets must be manually created in the namespace.

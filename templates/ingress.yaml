@@ -1,4 +1,4 @@
-{{- if .Values.ingress.enabled -}}
+{{- if and (.Values.ingress.enabled) (.Values.deployServer) -}}
 {{- $fullName := include "teamcity.fullname" . -}}
 {{- $servicePort := .Values.service.port -}}
 {{- $ingressPath := .Values.ingress.path -}}

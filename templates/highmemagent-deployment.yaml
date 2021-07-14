@@ -1,4 +1,4 @@
-
+{{- if .Values.highmemagent.enabled }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -123,3 +123,4 @@ spec:
     {{- if .Values.highmemagent.priorityClassName }}
       priorityClassName: "{{ .Values.highmemagent.priorityClassName }}"
     {{- end }}
+{{- end }}
